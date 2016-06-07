@@ -31,5 +31,5 @@ RUN curl -SLO "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-
   npm install -g npm@"$NPM_VERSION"  && \
   npm cache clear
 RUN curl https://raw.githubusercontent.com/creationix/nvm/v0.30.1/install.sh | sudo -u digabi bash
-RUN sudo -u digabi bash -c '. /home/digabi/.nvm/nvm.sh && nvm install 4.4.4 && nvm install 4.2.1 && nvm install 6.2.0'
+RUN sudo -u digabi bash -c '. /home/digabi/.nvm/nvm.sh && nvm install 4.4.4 && nvm install 6.2.0'
 RUN gem install fpm
