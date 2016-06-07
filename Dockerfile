@@ -3,7 +3,6 @@ FROM debian:jessie
 ENV NODE_VERSION=0.10.40
 ENV NPM_VERSION=2.15.1
 
-RUN sed -i 's/httpredir.debian.org/192.168.2.49/' /etc/apt/sources.list
 RUN apt-get update && apt-get -y install curl ca-certificates sudo locales make ruby ruby-dev libnss3-tools git libffi-dev gcc && rm -rf /var/lib/apt/lists/*
 RUN echo 'fi_FI.UTF-8 UTF-8' > /etc/locale.gen
 RUN locale-gen
