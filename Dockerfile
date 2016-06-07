@@ -3,12 +3,16 @@ FROM debian:jessie
 ENV NODE_VERSION=0.10.40
 ENV NPM_VERSION=2.15.1
 
-RUN apt-get update && apt-get -y install curl ca-certificates sudo locales make ruby ruby-dev libnss3-tools git libffi-dev gcc g++ && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && \
+  apt-get -y install curl ca-certificates sudo locales make ruby ruby-dev libnss3-tools git libffi-dev gcc g++ && \
+  rm -rf /var/lib/apt/lists/*
 RUN echo 'fi_FI.UTF-8 UTF-8' > /etc/locale.gen
 RUN locale-gen
 RUN echo 'deb http://apt.postgresql.org/pub/repos/apt/ jessie-pgdg main' > /etc/apt/sources.list.d/pgdg.list
 RUN curl https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
-RUN apt-get update && apt-get -y install postgresql-9.5 postgresql-contrib-9.5 && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && \
+  apt-get -y install postgresql-9.5 postgresql-contrib-9.5 && \
+  rm -rf /var/lib/apt/lists/*
 RUN sed -i 's/md5/trust/' /etc/postgresql/9.5/main/pg_hba.conf
 RUN pg_ctlcluster 9.5 main start && \
   sudo -u postgres psql -c 'CREATE USER digabi WITH SUPERUSER;' && \
