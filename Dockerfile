@@ -3,9 +3,14 @@ FROM debian:jessie
 ENV NODE_VERSION=0.10.40
 ENV NPM_VERSION=2.15.1
 
+
 RUN apt-get update && \
-  apt-get -y install ca-certificates curl g++ gcc git libX11-dev libffi-dev libnss3-tools locales make netcat-traditional ruby ruby-dev sudo && \
+  apt-get -y install wget ca-certificates curl g++ gcc git libX11-dev libffi-dev libnss3-tools locales make netcat-traditional ruby ruby-dev sudo && \
   rm -rf /var/lib/apt/lists/*
+RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
+RUN echo 'deb http://dl.google.com/linux/chrome/deb/ stable main' > /etc/apt/sources.list.d/chrome.list
+RUN apt-get update
+RUN apt-get -y install google-chrome-unstable
 RUN echo 'fi_FI.UTF-8 UTF-8' > /etc/locale.gen
 RUN locale-gen
 RUN echo 'deb http://apt.postgresql.org/pub/repos/apt/ jessie-pgdg main' > /etc/apt/sources.list.d/pgdg.list
