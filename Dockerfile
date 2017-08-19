@@ -1,8 +1,5 @@
 FROM debian:jessie
 
-ENV NODE_VERSION=0.10.40
-ENV NPM_VERSION=2.15.1
-
 RUN apt-get update && \
     apt-get -y install ca-certificates curl g++ gcc git libX11-dev libffi-dev libnss3-tools locales make \
     netcat-traditional ruby ruby-dev sudo && \
@@ -20,18 +17,6 @@ RUN apt-get update && \
     sudo -u postgres psql -c 'CREATE USER digabi WITH SUPERUSER;' && \
     pg_ctlcluster 9.5 main stop && \
     adduser --system --uid 1001 digabi && \
-    for key in 7937DFD2AB06298B2293C3187D33FF9D0246406D 114F43EE0176B71C7BC219DD50A3051F888C628D  ; \
-    do \
-        gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$key";\
-    done && \
-    curl -SLO "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x64.tar.gz" && \
-    curl -SLO "https://nodejs.org/dist/v$NODE_VERSION/SHASUMS256.txt.asc" && \
-    gpg --verify SHASUMS256.txt.asc && \
-    grep " node-v$NODE_VERSION-linux-x64.tar.gz\$" SHASUMS256.txt.asc | sha256sum -c -  && \
-    tar -xzf "node-v$NODE_VERSION-linux-x64.tar.gz" -C /usr/local --strip-components=1  && \
-    rm "node-v$NODE_VERSION-linux-x64.tar.gz" SHASUMS256.txt.asc  && \
-    npm install -g npm@"$NPM_VERSION"  && \
-    npm cache clear && \
     curl https://raw.githubusercontent.com/creationix/nvm/v0.32.1/install.sh | sudo -u digabi bash && \
     sudo -u digabi bash -c '. /home/digabi/.nvm/nvm.sh && nvm install 6.11.1 && nvm install --lts 6.9.1 && nvm install 8.3.0' && \
     gem install fpm
