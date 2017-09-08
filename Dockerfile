@@ -10,7 +10,7 @@ RUN apt-get update && \
     curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add - && \
     echo "deb http://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list && \
     apt-get update && \
-    apt-get -y install google-chrome-unstable postgresql-9.5 postgresql-contrib-9.5 postgresql-server-dev-9.5 yarn&& \
+    apt-get -y install google-chrome-unstable postgresql-9.5 postgresql-contrib-9.5 postgresql-server-dev-9.5 yarn=1.0.1&& \
     rm -rf /var/lib/apt/lists/* && \
     echo 'fi_FI.UTF-8 UTF-8' > /etc/locale.gen && \
     locale-gen && \
