@@ -17,7 +17,7 @@ RUN apt-get update && \
     sudo -u postgres psql -c 'CREATE USER digabi WITH SUPERUSER;' && \
     pg_ctlcluster 9.5 main stop && \
     adduser --system --uid 1001 digabi && \
-    curl https://raw.githubusercontent.com/creationix/nvm/v0.32.1/install.sh | sudo -u digabi bash && \
+    curl https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | sudo -u digabi bash && \
     sudo -u digabi bash -c '. /home/digabi/.nvm/nvm.sh && nvm install 6.11.1 && nvm install --lts 6.9.1 && nvm install 8.3.0 && nvm install 8.9.3 && nvm install 10.0.0' && \
     sudo -u digabi bash -c 'cd ; . ~/.nvm/nvm.sh; for v in 6.11.1 8.3.0 8.9.3 10.0.0; do nvm exec $v npm install -g yarn; done' && \
     gem install fpm
