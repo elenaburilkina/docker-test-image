@@ -1,0 +1,2 @@
+#!/bin/bash
+git clone git@github.com:elenaburilkina/docker-test-image.git
