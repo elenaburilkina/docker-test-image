@@ -1,6 +1,6 @@
 #!/bin/bash
 
 echo "------ HOOK START - BUILD -------"
-git clone git@github.com:elenaburilkina/docker-test-image.git
+git clone git@github.com:elenaburilkina/server.git
 
 echo "------ HOOK END - BUILD -------"
