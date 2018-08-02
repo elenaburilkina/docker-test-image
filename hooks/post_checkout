@@ -1,6 +1,13 @@
 #!/bin/bash
 
-echo "------ HOOK START - BUILD -------"
-git clone git@github.com:elenaburilkina/server.git
+echo "------ HOOK START - POST_CHECKOUT -------"
 
-echo "------ HOOK END - BUILD -------"
+echo "------ START - TESTING PUBLIC REPO CHECKOUT -------"
+git clone git@github.com:elenaburilkina/server.git
+echo "------ END - TESTING PUBLIC REPO CHECKOUT -------"
+
+echo "------ START - TESTING PRIVATE REPO CHECKOUT -------"
+git clone git@github.com:elenaburilkina/server.git
+echo "------ END - TESTING PRIVATE REPO CHECKOUT -------"
+
+echo "------ HOOK END - POST_CHECKOUT -------"
